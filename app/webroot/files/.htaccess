@@ -1,0 +1,4 @@
+<FilesMatch "\.(htaccess|htpasswd|ini|fla|psd|log|sh|php3|php4|phtml|pl|py|jsp|asp|htm|shtml|cgi|exe|php)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
