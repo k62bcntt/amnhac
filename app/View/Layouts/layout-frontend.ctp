@@ -18,9 +18,9 @@
 
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
-<!DOCTYPE html>
-<html lang="en" class="app">
-<head> 
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
 	<?php echo $this->Html->charset(); ?>
     <title>
         <?php echo $title_for_layout; ?>
@@ -30,40 +30,65 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
   	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <?php
         echo $this->Html->meta('icon');
-        echo $this->Html->css(array('frontend/bootstrap','frontend/animate','frontend/app','frontend/font','frontend/simple-line-icons','both/font-awesome.min', 'frontend/jplayer.flat'));
+        echo $this->Html->css(array('frontend/style','frontend/layout','frontend/prettyPhoto'));
         echo $this->Html->script(array('frontend/jquery.min'));
         echo $this->fetch('meta');
         echo $this->fetch('css');
         echo $this->fetch('script');
     ?>
 </head>
-<body class="">
-	<section class="vbox">
+<body id="page1">
+	<div id="main">
+		<?php  
+		echo $this->element('frontend/header');
+		echo $this->element('frontend/slide');
+		echo $this->fetch('frontend/content');
+		?>
+		<div class="af clear"></div>
+	</div>
 	<?php  
-	echo $this->element('frontend/header');
+		// echo $this->element('frontend/footer');
 	?>
-		<section>
-	        <section class="hbox stretch">
-	        	<?php
-		        echo $this->element('frontend/mainnav');
-		        ?>
-	       	    <section id="content">
-		            <section class="hbox stretch">
-		                <section>
-		                    <section class="vbox">
-					        <?php
-					        echo $this->fetch('content');
-					        echo $this->element('frontend/footer');
-					        ?>
-					        </section>
-				        </section>
-			        </section>
-		        </section>
-	       </section>
-        </section>
-	</section>
 	<?php
-    echo $this->Html->script(array('both/bootstrap','frontend/jquery.slimscroll.min','frontend/jquery.jplayer.min','frontend/jplayer.playlist.min','frontend/demo','both/app.js'));
+    echo $this->Html->script(array('frontend/cufon-yui','frontend/cufon-replace','frontend/Josefin_Sans_600.font','frontend/Lobster_400.font','frontend/sprites','frontend/jquery.jplayer.min','frontend/jquery.jplayer.settings','frontend/gSlider','frontend/jquery.easing.1.3','frontend/jquery.prettyPhoto'));
     ?> 
+<script type="text/javascript">Cufon.now()
+$(function(){
+	$('nav,.more,.header-more').sprites()
+
+	$('.header-slider').gSlider({
+		prevBu:'.hs-prev',
+		nextBu:'.hs-next'
+	})
+})
+$(window).load(function(){
+	$('.tumbvr')._fw({tumbvr:{
+		duration:2000,
+		easing:'easeOutQuart'
+	}})
+	.bind('click',function(){
+		location="index-3.html"
+	})
+	
+	$('a[rel=prettyPhoto]').each(function(){
+		var th=$(this),
+			pb
+		th
+			.append(pb=$('<span class="playbutt"></span>').css({opacity:.7}))
+		pb
+			.bind('mouseenter',function(){
+				$(this)
+					.stop()
+					.animate({opacity:.9})
+			})
+			.bind('mouseleave',function(){
+				$(this)
+					.stop()
+					.animate({opacity:.7})
+			})
+	})
+	.prettyPhoto({theme:'dark_square'})
+})
+</script>
 </body>
 </html>
